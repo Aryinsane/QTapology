@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Bricolage+Grotesque:wght@200;300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Color Palette (HSL) */
+  --background: hsl(200, 60%, 85%);
+  --primary: hsl(200, 70%, 45%);
+  --muted-foreground: hsl(210, 30%, 45%);
+  --heart-pink: hsl(340, 75%, 60%);
+  --heart-rose: hsl(350, 65%, 65%);
+  
+  /* Ocean gradient layers */
+  --ocean-light: hsl(200, 65%, 88%);
+  --ocean-mid: hsl(200, 60%, 75%);
+  --ocean-deep: hsl(195, 55%, 60%);
+  --ocean-glow: hsl(205, 70%, 50%);
+}
+
+body {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  background: linear-gradient(to bottom, hsl(200, 70%, 88%) 0%, hsl(200, 65%, 65%) 100%);
+  color: var(--muted-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Typography */
+.font-dancing-script {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 400;
+}
+
+/* Gradients */
+.ocean-gradient {
+  background: linear-gradient(180deg, hsl(200, 60%, 95%) 0%, hsl(200, 60%, 88%) 30%, hsl(195, 55%, 75%) 70%, hsl(195, 50%, 70%) 100%);
+}
+
+.card-inner-gradient {
+  background: linear-gradient(180deg, hsl(200, 60%, 95%), hsl(195, 55%, 80%));
+}
+
+/* Enhanced Shadows */
+.card-shadow {
+  box-shadow: 
+    0 10px 30px rgba(91, 163, 208, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.btn-shadow {
+  box-shadow: 
+    0 6px 20px rgba(91, 163, 208, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.gif-box-shadow {
+  box-shadow: 
+    inset 0 2px 8px rgba(255, 255, 255, 0.4),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.message-card-shadow {
+  box-shadow: 
+    inset 0 8px 16px rgba(255, 255, 255, 0.3),
+    0 -4px 12px rgba(91, 163, 208, 0.15),
+    inset 0 -8px 16px rgba(0, 0, 0, 0.05);
+}
+
+.heart-glow {
+  filter: drop-shadow(0 4px 8px rgba(230, 105, 130, 0.3));
+}
+
+.card-shadow {
+  box-shadow: inset -2px -3px 15px rgba(77, 75, 75, 0.3), 3px 3px 30px rgba(191, 180, 178, 0.29), 5px 5px 5px rgba(43, 42, 42, 0.29),
+    inset -2px -3px 4px rgba(53, 52, 52, 0.21), inset -10px -10px 15px rgba(63, 60, 60, 0.15);
+}
+
+.btn-shadow {
+  box-shadow: inset -2px -2px 10px rgba(0, 0, 0, 0.2), inset -2px -4px 20px rgba(75, 75, 75, 0.2), 2px 2px 10px rgba(0, 0, 0, 0.21);
+}
+
+.gif-box-shadow {
+  box-shadow: inset 3px 2px 8px rgba(39, 38, 38, 0.3), -2px -2px 8px rgba(22, 22, 22, 0.459);
+}
+
+.card {
+  cursor: pointer;
+}
+
+.cover {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 38px;
+  transition: all 0.7s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card.tapped .cover {
+  left: -100%;
+}
+
+.msg-card {
+  left: 0;
+  background-image: url('/images/card-bg-mobile.webp');
+  background-size: cover;
+  background-position: top;
+  transition: all 0.7s ease-out;
+}
+
+@media (min-width: 768px) {
+  .msg-card {
+    background-image: url('/images/card-bg-desktop.webp');
+  }
+}
+
+.animate-move {
+  animation: move 1.5s infinite;
+}
+
+@keyframes move {
+  0%, 100% {
+    height: 0% !important;
+  }
+  50% {
+    height: 10% !important;
+  }
+}
+
+/* Rising Hearts Animation */
+@keyframes rise-heart {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  45% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(var(--tx));
+    opacity: 0;
+  }
+}
+
+.rise-heart {
+  animation: var(--duration, 16s) rise-heart linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Subtle Floating Heart Animations */
+@keyframes float-heart-1 {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(-3deg);
+  }
+}
+
+@keyframes float-heart-2 {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(-4deg);
+  }
+  66% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes float-heart-3 {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.05);
+  }
+}
+
+.float-heart-1 {
+  animation: float-heart-1 4s ease-in-out infinite;
+}
+
+.float-heart-2 {
+  animation: float-heart-2 5s ease-in-out infinite;
+}
+
+.float-heart-3 {
+  animation: float-heart-3 6s ease-in-out infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Message Card Height Transition */
+.msg-card {
+  left: 0;
+  background-image: url('/images/card-bg-mobile.webp');
+  background-size: cover;
+  background-position: top;
+  transition: height 0.7s ease-out;
+}
+
+/* Heart color variants matching blue theme */
+.heart-color-1 {
+  color: hsl(340, 75%, 60%);
+}
+
+.heart-color-2 {
+  color: hsl(350, 65%, 65%);
+}
+
+.heart-color-3 {
+  color: hsl(340, 70%, 55%);
+}
+
+.heart-color-4 {
+  color: hsl(345, 80%, 65%);
+}
+
+.heart-color-5 {
+  color: hsl(350, 75%, 70%);
+}
+
+.floating-heart-continuous {
+  position: fixed;
+  bottom: -50px;
+  animation: float-up 6s linear infinite;
+}
+
+/* Modern card container with glassmorphism */
+.card-container {
+  background: linear-gradient(135deg, rgba(232, 244, 251, 0.85) 0%, rgba(255, 255, 255, 0.7) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 8px 32px rgba(91, 163, 208, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  border-radius: 40px;
+  padding: 28px;
+  min-width: 192px;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease-out;
+}
+
+@media (min-width: 768px) {
+  .card-container {
+    padding: 32px;
+    border-radius: 50px;
+    gap: 20px;
+  }
+}
+
+.card-container:hover {
+  background: linear-gradient(135deg, rgba(240, 248, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+  box-shadow: 
+    0 12px 40px rgba(91, 163, 208, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* =========================
+   CONTAINER BOX OVERRIDES
+   (Paste at the end of globals.css)
+   ========================= */
+
+/* Core tokens used by the container (safe — will reuse existing tokens if already defined) */
+:root {
+  --card-token: hsl(200 50% 92%);       /* fallback card */
+  --card-border-h: 200;
+  --card-border-s: 70%;
+  --card-border-l: 45%;
+}
+
+/* Main container applied to each screen root */
+.main-container {
+  max-width: 400px;          /* fixed constraint */
+  min-width: 192px;          /* min-w-48 */
+  width: 100%;
+  padding: 28px;             /* p-7 */
+  border-radius: 48px;       /* rounded-5xl */
+  background: var(--card, var(--card-token));
+  border: 1px solid hsl(var(--card-border-h) var(--card-border-s) var(--card-border-l) / 0.2);
+  box-sizing: border-box;
+  margin: 16px auto;
+  position: relative;
+  overflow: visible;
+}
+
+/* Inner panels/cards inside the main container */
+.inner-card {
+  border-radius: 40px;       /* rounded-4xl */
+  padding: 18px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+/* Re-usable card shadow (light weight, matches spec) */
+.card-shadow {
+  box-shadow:
+    0 8px 16px -4px hsl(210 60% 30% / 0.2),
+    0 20px 40px -10px hsl(210 50% 25% / 0.25),
+    0 0 50px hsl(195 70% 70% / 0.15),
+    inset 0 1px 0 hsl(200 80% 98% / 0.8);
+}
+
+/* GIF / image inner box and sizes (override only sizes & visual, keep your animations) */
+.gif-box {
+  border-radius: 24px;
+  background: linear-gradient(180deg, hsl(200 60% 95%), hsl(195 55% 80%));
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+}
+
+.gif-box img, .gif-box video { object-fit: cover; width:100%; height:100%; display:block; }
+
+/* Height utilities — use these classes on your gif containers */
+.gif-h-1 { height: 176px; }         /* first / second screens mobile */
+@media (min-width: 768px) { .md\:gif-h-1 { height: 208px; } }
+
+.gif-h-2 { height: 96px; }          /* third screen small cards mobile */
+@media (min-width: 768px) { .md\:gif-h-2 { height: 112px; } }
+
+.gif-h-4 { height: 176px; }         /* fourth screen mobile */
+@media (min-width: 768px) { .md\:gif-h-4 { height: 192px; } }
+
+/* Inner GIF box shadow — matches spec but not touching your existing animation rules */
+.gif-box-shadow {
+  box-shadow:
+    inset 0 -12px 35px hsl(200 50% 55% / 0.25),
+    0 6px 20px hsl(210 50% 40% / 0.15),
+    inset 0 2px 0 hsl(200 80% 98% / 0.5);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* Button helper (small safe override to match shape + shadow) */
+.btn-rounded-override {
+  padding: 12px 32px;      /* py-3 px-8 */
+  border-radius: 9999px;   /* pill */
+  font-weight: 600;
+  transition: transform 0.18s ease, filter 0.18s ease;
+  box-shadow:
+    0 6px 20px -4px hsl(210 50% 35% / 0.35),
+    0 0 25px hsl(195 70% 70% / 0.2);
+}
+.btn-rounded-override:hover { transform: scale(1.05); filter: brightness(0.98); }
+.btn-rounded-override:active { transform: scale(0.95); }
+
+/* Message card height transition helper — only changes transition & closed/open classes */
+.msg-card {
+  transition: height 0.7s ease-out;
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+/* open/closed utility classes (apply via JS) */
+.msg-card.closed { height: 0; }
+.msg-card.open-mobile { height: 228%; }
+@media (min-width: 768px) {
+  .msg-card.open-desktop { height: 233%; }
+}
+
+/* Ensure our overrides are stronger than previous rules where needed */
+.main-container, .inner-card, .gif-box, .gif-box-shadow, .card-shadow, .msg-card {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
